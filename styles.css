@@ -5,8 +5,8 @@
     --bg-elevated: #151b28;
     --text: #e4e9f2;
     --text-muted: #9ba7c0;
-    --accent: #6cf4ff;
-    --accent-dark: #29a2b2;
+    --accent: #00c4b5;
+    --accent-dark: #009e94;
     --border: rgba(255, 255, 255, 0.08);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
@@ -63,15 +63,25 @@ a:hover {
 }
 
 .logo {
-    font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+}
+
+.logo img {
+    height: 32px;
+    width: auto;
+    display: block;
 }
 
 .site-nav {
     display: flex;
     gap: 1rem;
     font-size: 0.95rem;
+    flex-wrap: nowrap;
 }
 
 .site-nav a {
