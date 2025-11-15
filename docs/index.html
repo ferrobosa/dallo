@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DALLO Docs</title>
+    <meta name="description" content="DALLO quick documentation: install, regtest, wallet, and API notes.">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">DALLO Docs</div>
+            <nav class="site-nav">
+                <a href="../index.html">Back to site</a>
+                <a href="#install">Install</a>
+                <a href="#run">Run</a>
+                <a href="#wallet">Wallet</a>
+                <a href="#api">API</a>
+                <a href="#deprecation">Deprecation</a>
+                <a href="#security">Security</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1>DALLO Docs</h1>
+                <p>Concise references for building, running, and testing DALLO. All URLs stay on dallo.cash.</p>
+                <div class="quick-facts">
+                    <div class="fact-card">
+                        <p class="label">Clients</p>
+                        <p class="value">dallod, dallo-cli, dallo-tx, dallod-wallet-tool</p>
+                    </div>
+                    <div class="fact-card">
+                        <p class="label">Data dirs</p>
+                        <p class="value">~/.dallo • ~/Library/Application Support/DALLO • %APPDATA%\DALLO</p>
+                    </div>
+                    <div class="fact-card">
+                        <p class="label">Config</p>
+                        <p class="value">dallo.conf</p>
+                    </div>
+                    <div class="fact-card">
+                        <p class="label">License</p>
+                        <p class="value">MIT with attributions to Bitcoin Core & Zcash devs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="section">
+            <div class="container">
+                <h2>Install</h2>
+                <p>DALLO is experimental. Build from source; expect churn.</p>
+                <ol>
+                    <li>Clone: <code>git clone https://github.com/dallo/dallo.git</code></li>
+                    <li>Install build tools: Python 3, Perl, pkg-config, Rust toolchain, libsodium, libtool, autotools, OS deps.</li>
+                    <li>Build: <code>./zcutil/build.sh -j$(nproc)</code></li>
+                </ol>
+                <p class="note">Mirror Zcash build references if a package is missing; layout is equivalent with DALLO branding.</p>
+            </div>
+        </section>
+
+        <section id="run" class="section">
+            <div class="container">
+                <h2>Run (regtest example)</h2>
+                <div class="download-grid">
+                    <article class="code-card">
+                        <h3>Sample dallo.conf</h3>
+                        <pre><code>rpcuser=&lt;set-a-user&gt;
+rpcpassword=&lt;set-a-strong-password&gt;
+server=1
+daemon=1
+listen=1
+regtest=1   # for local testing
+gen=1       # auto-mine on regtest</code></pre>
+                    </article>
+                    <article class="code-card">
+                        <h3>Start + info</h3>
+                        <pre><code>./src/dallod -datadir=~/.dallo
+./src/dallo-cli -datadir=~/.dallo getblockchaininfo</code></pre>
+                    </article>
+                </div>
+                <p class="note">Use <code>-regtest</code> for local development. Verify binaries/hashes for every release.</p>
+            </div>
+        </section>
+
+        <section id="wallet" class="section">
+            <div class="container">
+                <h2>Wallet basics</h2>
+                <ul>
+                    <li>New account: <code>dallo-cli z_getnewaccount</code></li>
+                    <li>New shielded address: <code>dallo-cli z_getaddressforaccount &lt;account&gt;</code></li>
+                    <li>Unified addresses preferred; for legacy <code>getnewaddress</code> set <code>-allowdeprecated=getnewaddress</code>.</li>
+                    <li>List notes: <code>dallo-cli z_listunspent</code></li>
+                    <li>Send: <code>dallo-cli z_sendmany &lt;from&gt; '[{"address":"&lt;addr&gt;","amount":1}]'</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="api" class="section">
+            <div class="container">
+                <h2>Docs &amp; API</h2>
+                <ul>
+                    <li>User docs: <a href="https://dallo.cash/docs" target="_blank" rel="noopener">dallo.cash/docs</a></li>
+                    <li>Protocol spec: <a href="https://dallo.cash/docs/protocol/protocol.pdf" target="_blank" rel="noopener">Protocol PDF</a></li>
+                    <li>RPC reference: <code>dallo-cli help</code>, manpages (<code>dallo-cli.1</code>, <code>dallod.1</code>, <code>dallo-tx.1</code>, <code>dallod-wallet-tool.1</code>).</li>
+                    <li>Inspect commands: <code>dallo-cli help &lt;command&gt;</code>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="deprecation" class="section">
+            <div class="container">
+                <h2>Deprecation notice</h2>
+                <ul>
+                    <li>dallod planned for deprecation in 2025. Migration targets: zebrad (full node) and Zallet (wallet).</li>
+                    <li>Add to dallo.conf to acknowledge: <code>i-am-aware-dallod-will-be-replaced-by-zebrad-and-zallet-in-2025=1</code></li>
+                    <li>Details: <a href="https://dallo.cash/support/dallod-deprecation/" target="_blank" rel="noopener">dallo.cash/support/dallod-deprecation/</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="security" class="section">
+            <div class="container">
+                <h2>Security &amp; disclosure</h2>
+                <ul>
+                    <li>Always use latest releases; verify binaries and hashes.</li>
+                    <li>Privacy guidance: <a href="https://dallo.cash/support/security" target="_blank" rel="noopener">dallo.cash/support/security</a></li>
+                    <li>Responsible disclosure: <a href="mailto:security@dallo.cash">security@dallo.cash</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <h2>FAQ</h2>
+                <ul>
+                    <li>Chain? DALLO rebrands a Zcash-derived chain; consensus unchanged.</li>
+                    <li>Parameters? Fetch Sprout params from <a href="https://dallo.cash/downloads/sprout-groth16.params" target="_blank" rel="noopener">dallo.cash/downloads/sprout-groth16.params</a>.</li>
+                    <li>Mining local? Set <code>regtest=1</code>, <code>gen=1</code>, start <code>dallod</code>, then <code>dallo-cli generate &lt;n&gt;</code>.</li>
+                    <li>Why “Zcash” strings? Message magic, seeds, paths remain for compatibility/licensing.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2025 DALLO Project</p>
+            <p class="muted">Experimental software. Use at your own risk.</p>
+            <div class="footer-links">
+                <a href="https://github.com/dallo/dallo" target="_blank" rel="noopener">GitHub</a>
+                <a href="mailto:contact@dallo.cash">contact@dallo.cash</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
