@@ -19,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body {
@@ -27,6 +28,8 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    height: 100%;
+    overflow: hidden;
 }
 
 img {
@@ -48,6 +51,10 @@ a:hover {
     padding: 0 1rem;
 }
 
+:root {
+    --header-height: 72px;
+}
+
 .site-header {
     position: sticky;
     top: 0;
@@ -55,13 +62,14 @@ a:hover {
     background: rgba(8, 10, 15, 0.85);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
+    height: var(--header-height);
 }
 
 .site-header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1.25rem;
 }
 
 .logo {
@@ -84,6 +92,7 @@ a:hover {
     gap: 1rem;
     font-size: 0.95rem;
     flex-wrap: nowrap;
+    position: relative;
 }
 
 .site-nav a {
@@ -99,10 +108,40 @@ a:hover {
     color: var(--accent);
 }
 
+.nav-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 60px;
+    background: var(--accent);
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+main {
+    position: relative;
+    height: calc(100vh - var(--header-height));
+}
+
+.view {
+    position: absolute;
+    inset: 0;
+    padding: 2.5rem 0;
+    overflow-y: auto;
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
 .hero {
-    padding: 8rem 0 6rem;
+    padding: 2.5rem 0 2rem;
     background: radial-gradient(circle at top right, rgba(108, 244, 255, 0.08), transparent 50%),
         linear-gradient(180deg, rgba(21, 27, 40, 0.8), rgba(8, 10, 15, 0));
+    position: relative;
+    overflow: hidden;
 }
 
 .hero h1 {
@@ -318,6 +357,21 @@ pre {
     padding: 1rem 1.5rem;
 }
 
+.orb {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.35;
+    background: radial-gradient(circle, rgba(0, 196, 181, 0.7), rgba(0, 196, 181, 0));
+    pointer-events: none;
+}
+
+.orb-1 { top: -40px; left: -60px; }
+.orb-2 { top: 30%; right: -80px; }
+.orb-3 { bottom: -80px; left: 30%; }
+
 .status .warning {
     background: rgba(255, 102, 0, 0.1);
     border-left: 4px solid #ff6600;
@@ -498,16 +552,18 @@ pre {
 @media (max-width: 720px) {
     .site-header .container {
         flex-direction: column;
-        gap: 0.75rem;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .site-nav {
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 0.65rem;
     }
 
     .hero {
-        padding-top: 7rem;
+        padding-top: 2rem;
     }
 
     .hero-actions {

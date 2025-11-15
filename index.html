@@ -15,31 +15,35 @@
                 <span>DALLO</span>
             </div>
             <nav class="site-nav">
-                <a href="#what-is-dallo">What is DALLO?</a>
-                <a href="#features">Features</a>
-                <a href="#download">Download</a>
-                <a href="#docs">Docs</a>
-                <a href="#developers">For Developers</a>
-                <a href="#status">Status</a>
-                <a href="#deprecation">Deprecation</a>
-                <a href="#security">Security</a>
-                <a href="#community">Community</a>
-                <a href="#faq">FAQ</a>
+                <span class="nav-indicator"></span>
+                <a href="#" data-view="hero">Home</a>
+                <a href="#" data-view="what-is-dallo">What is DALLO?</a>
+                <a href="#" data-view="download">Download</a>
+                <a href="#" data-view="docs">Docs</a>
+                <a href="#" data-view="developers">Developers</a>
+                <a href="#" data-view="status">Status</a>
+                <a href="#" data-view="deprecation">Deprecation</a>
+                <a href="#" data-view="security">Security</a>
+                <a href="#" data-view="community">Community</a>
+                <a href="#" data-view="faq">FAQ</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" id="top">
+        <section class="hero view active" data-view="hero">
             <div class="container">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
                 <p class="eyebrow">Privacy-first cryptocurrency</p>
                 <h1>DALLO – Decentralized Anonymous Ledger with Layered Obfuscation</h1>
                 <p class="tagline">Obscure the data, prove the truth. Private, verifiable digital cash for everyone.</p>
                 <p class="lead">DALLO is a Zcash-derived privacy chain with layered obfuscation, shielded transactions, and future-focused UX. Use it to transact privately while keeping proofs verifiable end-to-end.</p>
                 <div class="hero-actions">
-                    <a class="btn primary" href="#download">Download / Run a node</a>
+                    <a class="btn primary" href="#" data-view="download">Download / Run a node</a>
                     <a class="btn secondary" href="docs/" target="_blank" rel="noopener">Read the docs</a>
-                    <a class="btn secondary" href="#download">Run a node</a>
+                    <a class="btn secondary" href="#" data-view="download">Run a node</a>
                 </div>
                 <div class="terminal">
                     <pre><code>dallod -daemon
@@ -66,7 +70,7 @@ dallo-cli getblockchaininfo</code></pre>
             </div>
         </section>
 
-        <section id="what-is-dallo" class="section">
+        <section data-view="what-is-dallo" class="section view">
             <div class="container split">
                 <div>
                     <h2>What is DALLO?</h2>
@@ -80,7 +84,7 @@ dallo-cli getblockchaininfo</code></pre>
             </div>
         </section>
 
-        <section id="features" class="section features">
+        <section data-view="features" class="section features view">
             <div class="container">
                 <h2>Features</h2>
                 <div class="feature-grid">
@@ -100,7 +104,7 @@ dallo-cli getblockchaininfo</code></pre>
             </div>
         </section>
 
-        <section id="developers" class="section developers">
+        <section data-view="developers" class="section developers view">
             <div class="container">
                 <div class="section-intro">
                     <h2>For Developers</h2>
@@ -121,7 +125,7 @@ cd dallo
             </div>
         </section>
 
-        <section id="download" class="section download">
+        <section data-view="download" class="section download view">
             <div class="container">
                 <h2>Download / Run a Node</h2>
                 <div class="download-grid">
@@ -150,7 +154,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="docs" class="section docs">
+        <section data-view="docs" class="section docs view">
             <div class="container">
                 <div class="section-intro">
                     <h2>Docs</h2>
@@ -202,7 +206,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="status" class="section status">
+        <section data-view="status" class="section status view">
             <div class="container">
                 <h2>Status</h2>
                 <p class="warning">DALLO is experimental software. Not a finished product, not an investment, and everything may change.</p>
@@ -223,7 +227,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="get-started" class="section get-started">
+        <section data-view="get-started" class="section get-started view">
             <div class="container">
                 <h2>Get Started</h2>
                 <ol>
@@ -235,7 +239,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="deprecation" class="section roadmap">
+        <section data-view="deprecation" class="section roadmap view">
             <div class="container">
                 <h2>Deprecation + Roadmap</h2>
                 <div class="roadmap-grid">
@@ -276,7 +280,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="security" class="section security">
+        <section data-view="security" class="section security view">
             <div class="container">
                 <h2>Security &amp; Disclosure</h2>
                 <ul class="checklist">
@@ -288,7 +292,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="community" class="section community">
+        <section data-view="community" class="section community view">
             <div class="container">
                 <h2>Community &amp; Support</h2>
                 <div class="status-grid">
@@ -312,7 +316,7 @@ gen=1       # auto-mine on regtest</code></pre>
             </div>
         </section>
 
-        <section id="faq" class="section faq-section">
+        <section data-view="faq" class="section faq-section view">
             <div class="container">
                 <h2>FAQ</h2>
                 <div class="faq">
@@ -342,32 +346,66 @@ gen=1       # auto-mine on regtest</code></pre>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script>
-        // Basic entrance for hero
-        gsap.from(".hero .eyebrow, .hero h1, .hero .tagline, .hero .lead, .hero-actions, .terminal", {
+        const views = Array.from(document.querySelectorAll('.view'));
+        const links = Array.from(document.querySelectorAll('[data-view]'));
+        const navIndicator = document.querySelector('.nav-indicator');
+
+        const setView = (id) => {
+            views.forEach((v) => {
+                if (v.dataset.view === id) {
+                    v.classList.add('active');
+                    gsap.fromTo(v, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" });
+                } else {
+                    v.classList.remove('active');
+                }
+            });
+            setIndicator(id);
+        };
+
+        const setIndicator = (id) => {
+            const activeLink = links.find(l => l.dataset.view === id && l.closest('.site-nav'));
+            if (!activeLink || !navIndicator) return;
+            const { offsetLeft, offsetWidth } = activeLink;
+            gsap.to(navIndicator, { x: offsetLeft, width: offsetWidth, duration: 0.25, ease: "power2.out" });
+        };
+
+        links.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const target = link.dataset.view;
+                if (target) {
+                    e.preventDefault();
+                    setView(target);
+                }
+            });
+        });
+
+        // Orbs animation (subtle parallax)
+        const orbs = gsap.utils.toArray('.orb');
+        orbs.forEach((orb, i) => {
+            gsap.to(orb, {
+                x: `random(-30, 30)`,
+                y: `random(-20, 20)`,
+                scale: `random(0.9, 1.15)`,
+                duration: gsap.utils.random(8, 14),
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                delay: i * 0.5
+            });
+        });
+
+        // Initial hero entrance
+        gsap.from(".hero .eyebrow, .hero h1, .hero .tagline, .hero .lead, .hero-actions, .terminal, .quick-facts", {
             opacity: 0,
-            y: 24,
-            duration: 1,
+            y: 18,
+            duration: 0.9,
             ease: "power3.out",
             stagger: 0.08
         });
 
-        // Scroll-triggered fades for sections
-        const sections = document.querySelectorAll("section.section");
-        sections.forEach((section) => {
-            gsap.from(section.querySelectorAll("h2, p, ul, ol, .feature-grid > article, .checklist li, .code-card, .fact-card, .status-card, .faq-item, .roadmap-card"), {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%"
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                stagger: 0.08,
-                ease: "power2.out"
-            });
-        });
+        // Set indicator to initial view
+        setIndicator('hero');
     </script>
     <footer class="site-footer">
         <div class="container">
