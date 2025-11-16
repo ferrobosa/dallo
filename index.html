@@ -111,16 +111,24 @@ dallo-cli getblockchaininfo</code></pre>
                     <p>Advanced users can pull the sources and start tinkering. Expect sharp edges, but contributions are welcome.</p>
                     <a href="https://github.com/dallo/dallo" target="_blank" rel="noopener" class="link">github.com/dallo/dallo</a>
                 </div>
-                <ul class="checklist">
-                    <li>Build from source on macOS / Linux</li>
-                    <li>Run a DALLO regtest node</li>
-                    <li>Experiment with shielded transactions</li>
-                </ul>
-                <div class="code-block">
-                    <pre><code>git clone https://github.com/dallo/dallo.git
+                <div class="accordion">
+                    <details open>
+                        <summary>Quick tasks</summary>
+                        <ul class="checklist">
+                            <li>Build from source on macOS / Linux</li>
+                            <li>Run a DALLO regtest node</li>
+                            <li>Experiment with shielded transactions</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Commands</summary>
+                        <div class="code-block">
+                            <pre><code>git clone https://github.com/dallo/dallo.git
 cd dallo
 ./zcutil/build.sh -j$(nproc)
 ./src/dallod -daemon</code></pre>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -128,28 +136,34 @@ cd dallo
         <section data-view="download" class="section download view">
             <div class="container">
                 <h2>Download / Run a Node</h2>
-                <div class="download-grid">
-                    <article class="code-card">
-                        <h3>Build from source</h3>
-                        <pre><code>./zcutil/build.sh -j$(nproc)</code></pre>
-                        <p class="note">Install platform dependencies first (Perl, Python3, Rust toolchain, libsodium, autotools).</p>
-                    </article>
-                    <article class="code-card">
-                        <h3>Sample dallo.conf</h3>
-                        <pre><code>rpcuser=&lt;set-a-user&gt;
+                <div class="accordion">
+                    <details open>
+                        <summary>Build from source</summary>
+                        <div class="code-card">
+                            <pre><code>./zcutil/build.sh -j$(nproc)</code></pre>
+                            <p class="note">Install platform dependencies first (Perl, Python3, Rust toolchain, libsodium, autotools).</p>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Sample dallo.conf</summary>
+                        <div class="code-card">
+                            <pre><code>rpcuser=&lt;set-a-user&gt;
 rpcpassword=&lt;set-a-strong-password&gt;
 server=1
 daemon=1
 listen=1
 regtest=1   # for local testing
 gen=1       # auto-mine on regtest</code></pre>
-                    </article>
-                    <article class="code-card">
-                        <h3>Start (regtest)</h3>
-                        <pre><code>./src/dallod -datadir=~/.dallo
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Start (regtest)</summary>
+                        <div class="code-card">
+                            <pre><code>./src/dallod -datadir=~/.dallo
 ./src/dallo-cli -datadir=~/.dallo getblockchaininfo</code></pre>
-                        <p class="note">Use <code>-regtest</code> during development. Verify binaries/hashes for each release.</p>
-                    </article>
+                            <p class="note">Use <code>-regtest</code> during development. Verify binaries/hashes for each release.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -242,40 +256,40 @@ gen=1       # auto-mine on regtest</code></pre>
         <section data-view="deprecation" class="section roadmap view">
             <div class="container">
                 <h2>Deprecation + Roadmap</h2>
-                <div class="roadmap-grid">
-                    <article class="roadmap-card">
-                        <h3>Roadmap</h3>
+                <div class="accordion">
+                    <details open>
+                        <summary>Roadmap</summary>
                         <ul>
                             <li><strong>Now</strong>: Regtest-only builds, API churn allowed.</li>
                             <li><strong>Next</strong>: Public testnet with shielded flows; add telemetry for UX tuning.</li>
                             <li><strong>Later</strong>: Mainnet once audits, parameters, and incentives stabilize.</li>
                         </ul>
-                    </article>
-                    <article class="roadmap-card">
-                        <h3>Client info</h3>
+                    </details>
+                    <details>
+                        <summary>Client info</summary>
                         <ul>
                             <li>Reference daemon: <code>dallod</code></li>
                             <li>CLI: <code>dallo-cli</code> for RPC/ops</li>
                             <li>RPC: Zcash-derived methods with DALLO branding</li>
                         </ul>
-                    </article>
-                    <article class="roadmap-card">
-                        <h3>Deprecation</h3>
+                    </details>
+                    <details>
+                        <summary>Deprecation</summary>
                         <ul>
                             <li>dallod planned for deprecation in 2025.</li>
                             <li>Targets: zebrad (full node) and Zallet (wallet).</li>
                             <li>Add to dallo.conf: <code>i-am-aware-dallod-will-be-replaced-by-zebrad-and-zallet-in-2025=1</code></li>
                             <li>More info: <a href="https://dallo.cash/support/dallod-deprecation/" target="_blank" rel="noopener">Deprecation notice</a></li>
                         </ul>
-                    </article>
-                    <article class="roadmap-card">
-                        <h3>Privacy &amp; Tech</h3>
+                    </details>
+                    <details>
+                        <summary>Privacy &amp; Tech</summary>
                         <ul>
                             <li>Zero-knowledge proofs for shielded transactions.</li>
                             <li>Layered obfuscation: shielding, diversified addresses, unified addresses.</li>
                             <li>Supply/halving follow upstream; no consensus changes.</li>
                         </ul>
-                    </article>
+                    </details>
                 </div>
             </div>
         </section>
@@ -283,35 +297,40 @@ gen=1       # auto-mine on regtest</code></pre>
         <section data-view="security" class="section security view">
             <div class="container">
                 <h2>Security &amp; Disclosure</h2>
-                <ul class="checklist">
-                    <li>Always use the latest release; verify binaries and hashes.</li>
-                    <li>Privacy guidance: <a href="https://dallo.cash/support/security" target="_blank" rel="noopener">dallo.cash/support/security</a></li>
-                    <li>Responsible disclosure: <a href="mailto:security@dallo.cash">security@dallo.cash</a></li>
-                    <li>Legacy identifiers (message magic, seeds, crate names) remain for compatibility/legal reasons.</li>
-                </ul>
+                <div class="accordion">
+                    <details open>
+                        <summary>Checklist</summary>
+                        <ul class="checklist">
+                            <li>Always use the latest release; verify binaries and hashes.</li>
+                            <li>Privacy guidance: <a href="https://dallo.cash/support/security" target="_blank" rel="noopener">dallo.cash/support/security</a></li>
+                            <li>Responsible disclosure: <a href="mailto:security@dallo.cash">security@dallo.cash</a></li>
+                            <li>Legacy identifiers (message magic, seeds, crate names) remain for compatibility/legal reasons.</li>
+                        </ul>
+                    </details>
+                </div>
             </div>
         </section>
 
         <section data-view="community" class="section community view">
             <div class="container">
                 <h2>Community &amp; Support</h2>
-                <div class="status-grid">
-                    <div class="status-card">
-                        <p class="label">Forum</p>
-                        <p class="value"><a href="https://dallo.cash/community/forum" target="_blank" rel="noopener">dallo.cash/community/forum</a></p>
-                    </div>
-                    <div class="status-card">
-                        <p class="label">Discord</p>
-                        <p class="value"><a href="https://discord.com/invite/dallo" target="_blank" rel="noopener">discord.com/invite/dallo</a></p>
-                    </div>
-                    <div class="status-card">
-                        <p class="label">Knowledge base</p>
-                        <p class="value"><a href="https://dallo.cash/learn" target="_blank" rel="noopener">dallo.cash/learn</a></p>
-                    </div>
-                    <div class="status-card">
-                        <p class="label">Contact</p>
-                        <p class="value"><a href="mailto:security@dallo.cash">security@dallo.cash</a> for vuln reports</p>
-                    </div>
+                <div class="accordion">
+                    <details open>
+                        <summary>Forum</summary>
+                        <p><a href="https://dallo.cash/community/forum" target="_blank" rel="noopener">dallo.cash/community/forum</a></p>
+                    </details>
+                    <details>
+                        <summary>Discord</summary>
+                        <p><a href="https://discord.com/invite/dallo" target="_blank" rel="noopener">discord.com/invite/dallo</a></p>
+                    </details>
+                    <details>
+                        <summary>Knowledge base</summary>
+                        <p><a href="https://dallo.cash/learn" target="_blank" rel="noopener">dallo.cash/learn</a></p>
+                    </details>
+                    <details>
+                        <summary>Contact</summary>
+                        <p><a href="mailto:security@dallo.cash">security@dallo.cash</a> (vuln reports)</p>
+                    </details>
                 </div>
             </div>
         </section>
@@ -319,27 +338,27 @@ gen=1       # auto-mine on regtest</code></pre>
         <section data-view="faq" class="section faq-section view">
             <div class="container">
                 <h2>FAQ</h2>
-                <div class="faq">
-                    <div class="faq-item">
-                        <h4>Is DALLO a new chain?</h4>
+                <div class="accordion">
+                    <details open>
+                        <summary>Is DALLO a new chain?</summary>
                         <p>DALLO rebrands a Zcash-derived chain; consensus parameters remain unchanged.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Where do I get parameters?</h4>
+                    </details>
+                    <details>
+                        <summary>Where do I get parameters?</summary>
                         <p>Download Sprout params from <a href="https://dallo.cash/downloads/sprout-groth16.params" target="_blank" rel="noopener">dallo.cash/downloads/sprout-groth16.params</a> when needed.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How do I mine locally?</h4>
+                    </details>
+                    <details>
+                        <summary>How do I mine locally?</summary>
                         <p>Set <code>regtest=1</code>, <code>gen=1</code>, start <code>dallod</code>, then <code>dallo-cli generate &lt;n&gt;</code>.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Why do I still see “Zcash”?</h4>
+                    </details>
+                    <details>
+                        <summary>Why do I still see “Zcash”?</summary>
                         <p>Legacy identifiers (message magic, seeds, crate names, paths) stay for compatibility and licensing.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Wallets &amp; addresses?</h4>
+                    </details>
+                    <details>
+                        <summary>Wallets &amp; addresses?</summary>
                         <p>Prefer unified address APIs (<code>z_getnewaccount</code>, <code>z_getaddressforaccount</code>). For legacy <code>getnewaddress</code>, set <code>-allowdeprecated=getnewaddress</code>.</p>
-                    </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -355,7 +374,7 @@ gen=1       # auto-mine on regtest</code></pre>
             views.forEach((v) => {
                 if (v.dataset.view === id) {
                     v.classList.add('active');
-                    gsap.fromTo(v, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" });
+                    gsap.fromTo(v, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" });
                 } else {
                     v.classList.remove('active');
                 }
