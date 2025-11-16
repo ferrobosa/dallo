@@ -161,7 +161,7 @@ cd dallo
                 </div>
                 <div class="accordion">
                     <details open>
-                        <summary>Build from source</summary>
+                        <summary><span class="summary-icon">⚙️</span>Build from source</summary>
                         <div class="code-card copy-wrap">
                             <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>./zcutil/build.sh -j$(nproc)</code></pre>
@@ -169,7 +169,7 @@ cd dallo
                         </div>
                     </details>
                     <details>
-                        <summary>Sample dallo.conf</summary>
+                        <summary><span class="summary-icon">📄</span>Sample dallo.conf</summary>
                         <div class="code-card copy-wrap">
                             <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>rpcuser=&lt;set-a-user&gt;
@@ -179,10 +179,11 @@ daemon=1
 listen=1
 regtest=1   # for local testing
 gen=1       # auto-mine on regtest</code></pre>
+                            <p class="note">Defaults: macOS <code>~/Library/Application Support/DALLO</code>, Linux <code>~/.dallo</code>. File: <code>dallo.conf</code>.</p>
                         </div>
                     </details>
                     <details>
-                        <summary>Start (regtest)</summary>
+                        <summary><span class="summary-icon">🚀</span>Start (regtest)</summary>
                         <div class="code-card copy-wrap">
                             <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>./src/dallod -datadir=~/.dallo
@@ -195,7 +196,7 @@ gen=1       # auto-mine on regtest</code></pre>
                         </div>
                     </details>
                     <details>
-                        <summary>Getting started (copy/paste ready)</summary>
+                        <summary><span class="summary-icon">🧭</span>Getting started (copy/paste ready)</summary>
                         <div class="quickstart">
                             <div class="code-card copy-wrap">
                                 <button class="copy-btn" aria-label="Copy">⧉</button>

@@ -454,6 +454,12 @@ pre {
     box-shadow: var(--shadow);
 }
 
+.code-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+}
+
 .code-card pre {
     margin-top: 0.75rem;
     background: rgba(255, 255, 255, 0.04);
@@ -621,6 +627,9 @@ pre {
     font-weight: 600;
     color: #fff;
     outline: none;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
 }
 
 .accordion summary::-webkit-details-marker {
@@ -629,6 +638,12 @@ pre {
 
 .accordion details[open] summary {
     color: var(--accent);
+}
+
+.summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .accordion ol,
