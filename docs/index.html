@@ -67,7 +67,8 @@
             <div class="container">
                 <h2>Run (regtest example)</h2>
                 <div class="download-grid">
-                    <article class="code-card">
+                    <article class="code-card copy-wrap">
+                        <button class="copy-btn" aria-label="Copy">⧉</button>
                         <h3>Sample dallo.conf</h3>
                         <pre><code>rpcuser=&lt;set-a-user&gt;
 rpcpassword=&lt;set-a-strong-password&gt;
@@ -77,7 +78,8 @@ listen=1
 regtest=1   # for local testing
 gen=1       # auto-mine on regtest</code></pre>
                     </article>
-                    <article class="code-card">
+                    <article class="code-card copy-wrap">
+                        <button class="copy-btn" aria-label="Copy">⧉</button>
                         <h3>Start + info</h3>
                         <pre><code>./src/dallod -datadir=~/.dallo
 ./src/dallo-cli -datadir=~/.dallo getblockchaininfo</code></pre>

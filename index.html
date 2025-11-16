@@ -10,8 +10,16 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <div class="logo">
-                <img src="logo.svg" alt="DALLO logo">
+            <div class="logo logo-spin">
+                <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
+                    <g fill="currentColor">
+                        <rect x="46" y="8" width="8" height="24" rx="2" />
+                        <rect x="66" y="8" width="8" height="24" rx="2" />
+                        <rect x="46" y="88" width="8" height="24" rx="2" />
+                        <rect x="66" y="88" width="8" height="24" rx="2" />
+                        <path d="M32 20h32c22.5 0 38 14.3 38 40s-15.5 40-38 40H32V20Zm16 16v48h16c12.5 0 22-9.7 22-24s-9.5-24-22-24H48Z" />
+                    </g>
+                </svg>
                 <span>DALLO</span>
             </div>
             <nav class="site-nav">
@@ -53,7 +61,8 @@
                     <span class="badge icon-lock">Layered obfuscation</span>
                     <span class="badge icon-cpu">Future-focused UX</span>
                 </div>
-                <div class="terminal">
+                <div class="terminal copy-wrap">
+                    <button class="copy-btn" aria-label="Copy">⧉</button>
                     <pre><code>dallod -daemon
 dallo-cli getblockchaininfo</code></pre>
                 </div>
@@ -130,7 +139,8 @@ dallo-cli getblockchaininfo</code></pre>
                     </details>
                     <details>
                         <summary>Commands</summary>
-                        <div class="code-block">
+                        <div class="code-block copy-wrap">
+                            <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>git clone https://github.com/dallo/dallo.git
 cd dallo
 ./zcutil/build.sh -j$(nproc)
@@ -152,14 +162,16 @@ cd dallo
                 <div class="accordion">
                     <details open>
                         <summary>Build from source</summary>
-                        <div class="code-card">
+                        <div class="code-card copy-wrap">
+                            <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>./zcutil/build.sh -j$(nproc)</code></pre>
                             <p class="note">Install platform dependencies first (Perl, Python3, Rust toolchain, libsodium, autotools).</p>
                         </div>
                     </details>
                     <details>
                         <summary>Sample dallo.conf</summary>
-                        <div class="code-card">
+                        <div class="code-card copy-wrap">
+                            <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>rpcuser=&lt;set-a-user&gt;
 rpcpassword=&lt;set-a-strong-password&gt;
 server=1
@@ -171,7 +183,8 @@ gen=1       # auto-mine on regtest</code></pre>
                     </details>
                     <details>
                         <summary>Start (regtest)</summary>
-                        <div class="code-card">
+                        <div class="code-card copy-wrap">
+                            <button class="copy-btn" aria-label="Copy">⧉</button>
                             <pre><code>./src/dallod -datadir=~/.dallo
 ./src/dallo-cli -datadir=~/.dallo getblockchaininfo</code></pre>
                             <p class="note">Use <code>-regtest</code> during development. Verify binaries/hashes for each release.</p>
@@ -491,6 +504,28 @@ gen=1       # auto-mine on regtest</code></pre>
             duration: 0.9,
             ease: "power3.out",
             stagger: 0.08
+        });
+
+        // Logo hover spin
+        const logo = document.querySelector('.logo-spin .logo-mark');
+        if (logo) {
+            logo.addEventListener('mouseenter', () => {
+                gsap.to(logo, { rotateY: 360, duration: 1.2, ease: "power2.out", repeat: 0 });
+            });
+        }
+
+        // Copy buttons
+        const copyButtons = Array.from(document.querySelectorAll('.copy-btn'));
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const codeEl = btn.nextElementSibling?.querySelector('code') || btn.nextElementSibling;
+                if (!codeEl) return;
+                const text = codeEl.textContent.trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.textContent = "✓";
+                    setTimeout(() => btn.textContent = "⧉", 1200);
+                });
+            });
         });
 
         // Set indicator to initial view
