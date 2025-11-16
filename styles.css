@@ -19,7 +19,6 @@
 
 html {
     scroll-behavior: smooth;
-    height: 100%;
 }
 
 body {
@@ -28,8 +27,6 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    height: 100%;
-    overflow: hidden;
 }
 
 img {
@@ -62,7 +59,6 @@ a:hover {
     background: rgba(8, 10, 15, 0.85);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
-    height: var(--header-height);
 }
 
 .site-header .container {
@@ -121,15 +117,11 @@ a:hover {
 
 main {
     position: relative;
-    height: calc(100vh - var(--header-height));
 }
 
 .view {
-    position: absolute;
-    inset: 0;
-    padding: 2.5rem 0;
-    overflow-y: auto;
     display: none;
+    padding: 2.5rem 0;
 }
 
 .view.active {
