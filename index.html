@@ -16,17 +16,20 @@
             </div>
             <nav class="site-nav">
                 <span class="nav-indicator"></span>
-                <a href="#" data-view="hero">Home</a>
+                <a href="#" data-view="hero" class="nav-core">Home</a>
+                <a href="#" data-view="download" class="nav-core">Download</a>
+                <a href="#" data-view="docs" class="nav-core">Docs</a>
+                <a href="#" data-view="faq" class="nav-core">FAQ</a>
+                <button class="nav-more" type="button">More ▾</button>
+            </nav>
+            <div class="nav-more-panel" hidden>
                 <a href="#" data-view="what-is-dallo">What is DALLO?</a>
-                <a href="#" data-view="download">Download</a>
-                <a href="#" data-view="docs">Docs</a>
                 <a href="#" data-view="developers">Developers</a>
                 <a href="#" data-view="status">Status</a>
                 <a href="#" data-view="deprecation">Deprecation</a>
                 <a href="#" data-view="security">Security</a>
                 <a href="#" data-view="community">Community</a>
-                <a href="#" data-view="faq">FAQ</a>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -369,6 +372,8 @@ gen=1       # auto-mine on regtest</code></pre>
         const views = Array.from(document.querySelectorAll('.view'));
         const links = Array.from(document.querySelectorAll('[data-view]'));
         const navIndicator = document.querySelector('.nav-indicator');
+        const navMoreBtn = document.querySelector('.nav-more');
+        const navMorePanel = document.querySelector('.nav-more-panel');
 
         const setView = (id) => {
             views.forEach((v) => {
@@ -395,9 +400,24 @@ gen=1       # auto-mine on regtest</code></pre>
                 if (target) {
                     e.preventDefault();
                     setView(target);
+                    if (navMorePanel && !navMorePanel.hidden) {
+                        navMorePanel.hidden = true;
+                    }
                 }
             });
         });
+
+        // Toggle compact "More" menu
+        if (navMoreBtn && navMorePanel) {
+            navMoreBtn.addEventListener('click', () => {
+                navMorePanel.hidden = !navMorePanel.hidden;
+            });
+            document.addEventListener('click', (e) => {
+                if (!navMorePanel.hidden && !navMorePanel.contains(e.target) && e.target !== navMoreBtn) {
+                    navMorePanel.hidden = true;
+                }
+            });
+        }
 
         // Orbs animation (subtle parallax)
         const orbs = gsap.utils.toArray('.orb');
