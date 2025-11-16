@@ -168,6 +168,11 @@ a:hover {
     color: var(--accent);
 }
 
+.nav-more-panel[hidden],
+[hidden] {
+    display: none !important;
+}
+
 main {
     position: relative;
 }
