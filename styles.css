@@ -76,12 +76,15 @@ a:hover {
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+    color: #fff;
 }
 
 .logo img {
     height: 32px;
     width: auto;
     display: block;
+    color: inherit;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
 }
 
 .site-nav {
@@ -216,6 +219,34 @@ main {
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.85rem;
+    box-shadow: 0 0 12px rgba(0, 196, 181, 0.2);
+}
+
+.badge::before {
+    display: inline-block;
+}
+
+.icon-shield::before { content: "🛡️"; }
+.icon-lock::before { content: "🔒"; }
+.icon-cpu::before { content: "⚡"; }
 
 .btn {
     display: inline-flex;
@@ -405,8 +436,8 @@ pre {
     height: 240px;
     border-radius: 50%;
     filter: blur(30px);
-    opacity: 0.35;
-    background: radial-gradient(circle, rgba(0, 196, 181, 0.7), rgba(0, 196, 181, 0));
+    opacity: 0.45;
+    background: radial-gradient(circle, rgba(0, 196, 181, 0.8), rgba(0, 196, 181, 0));
     pointer-events: none;
 }
 
