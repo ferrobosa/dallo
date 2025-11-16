@@ -463,6 +463,11 @@ pre {
     white-space: pre-wrap;
 }
 
+.quickstart {
+    display: grid;
+    gap: 0.75rem;
+}
+
 .inline-actions {
     display: flex;
     gap: 0.5rem;

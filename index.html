@@ -195,6 +195,76 @@ gen=1       # auto-mine on regtest</code></pre>
                         </div>
                     </details>
                     <details>
+                        <summary>Getting started (copy/paste ready)</summary>
+                        <div class="quickstart">
+                            <div class="code-card copy-wrap">
+                                <button class="copy-btn" aria-label="Copy">⧉</button>
+                                <h4>1) Build</h4>
+                                <pre><code># From repo root
+./zcutil/build.sh -j$(nproc)
+# Binaries land in src/: dallod, dallo-cli, dallo-tx, dallod-wallet-tool.</code></pre>
+                            </div>
+                            <div class="code-card copy-wrap">
+                                <button class="copy-btn" aria-label="Copy">⧉</button>
+                                <h4>2) Create config (regtest)</h4>
+                                <pre><code># Default data dirs:
+# macOS: ~/Library/Application Support/DALLO
+# Linux: ~/.dallo
+# File: dallo.conf
+
+rpcuser=change_me
+rpcpassword=change_me-too
+server=1
+daemon=1
+listen=1
+regtest=1
+gen=1
+i-am-aware-dallod-will-be-replaced-by-zebrad-and-zallet-in-2025=1</code></pre>
+                            </div>
+                            <div class="code-card copy-wrap">
+                                <button class="copy-btn" aria-label="Copy">⧉</button>
+                                <h4>3) Start node (regtest)</h4>
+                                <pre><code># macOS
+./src/dallod -datadir=\"$HOME/Library/Application Support/DALLO\"
+# Linux
+./src/dallod -datadir=\"$HOME/.dallo\"</code></pre>
+                            </div>
+                            <div class="code-card copy-wrap">
+                                <button class="copy-btn" aria-label="Copy">⧉</button>
+                                <h4>4) Basic RPC checks</h4>
+                                <pre><code>./src/dallo-cli getblockchaininfo
+./src/dallo-cli getmininginfo</code></pre>
+                            </div>
+                            <div class="code-card copy-wrap">
+                                <button class="copy-btn" aria-label="Copy">⧉</button>
+                                <h4>5) Mine &amp; send on regtest</h4>
+                                <pre><code># Mine instantly
+./src/dallo-cli generate 10
+
+# Legacy getnewaddress requires allowdeprecated
+./src/dallod -allowdeprecated=getnewaddress
+ADDR=$(./src/dallo-cli getnewaddress \"\")
+
+# Send to self and confirm
+./src/dallo-cli sendtoaddress \"$ADDR\" 1.0
+./src/dallo-cli generate 1
+./src/dallo-cli getbalance</code></pre>
+                            </div>
+                            <div class="code-card">
+                                <h4>6) Key URLs</h4>
+                                <ul>
+                                    <li><a href="https://dallo.cash/docs" target="_blank" rel="noopener">Docs</a></li>
+                                    <li><a href="https://dallo.cash/docs/protocol/protocol.pdf" target="_blank" rel="noopener">Protocol spec</a></li>
+                                    <li><a href="https://dallo.cash/support/security" target="_blank" rel="noopener">Security</a></li>
+                                    <li><a href="https://dallo.cash/support/dallod-deprecation" target="_blank" rel="noopener">Deprecation</a></li>
+                                    <li><a href="https://dallo.cash/community/forum" target="_blank" rel="noopener">Forum</a></li>
+                                    <li><a href="https://dallo.cash/learn" target="_blank" rel="noopener">Knowledge base</a></li>
+                                    <li><a href="https://download.dallo.org/downloads/sprout-groth16.params" target="_blank" rel="noopener">Sprout params</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+                    <details>
                         <summary>Parameters &amp; packages</summary>
                         <ul>
                             <li>Sprout params: <a href="https://download.dallo.org/downloads/sprout-groth16.params" target="_blank" rel="noopener">download.dallo.org/downloads/sprout-groth16.params</a></li>
