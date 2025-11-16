@@ -144,6 +144,11 @@ cd dallo
         <section data-view="download" class="section download view">
             <div class="container">
                 <h2>Download / Run a Node</h2>
+                <div class="badges">
+                    <span class="badge icon-cpu" data-tooltip="Optimized for CLI usage">CLI-first</span>
+                    <span class="badge icon-shield" data-tooltip="Chain params + RPC coherence">Zcash-compatible</span>
+                    <span class="badge icon-lock" data-tooltip="Verify binaries & hashes before running">Verify hashes</span>
+                </div>
                 <div class="accordion">
                     <details open>
                         <summary>Build from source</summary>
@@ -170,6 +175,10 @@ gen=1       # auto-mine on regtest</code></pre>
                             <pre><code>./src/dallod -datadir=~/.dallo
 ./src/dallo-cli -datadir=~/.dallo getblockchaininfo</code></pre>
                             <p class="note">Use <code>-regtest</code> during development. Verify binaries/hashes for each release.</p>
+                            <div class="inline-actions">
+                                <button class="btn tertiary" data-modal-target="hashes-modal">Show checksum steps</button>
+                                <button class="btn tertiary" data-modal-target="params-modal">Get params</button>
+                            </div>
                         </div>
                     </details>
                     <details>
@@ -386,6 +395,8 @@ gen=1       # auto-mine on regtest</code></pre>
         const navIndicator = document.querySelector('.nav-indicator');
         const navMoreBtn = document.querySelector('.nav-more');
         const navMorePanel = document.querySelector('.nav-more-panel');
+        const modals = Array.from(document.querySelectorAll('.modal'));
+        const modalTriggers = Array.from(document.querySelectorAll('[data-modal-target]'));
 
         const setView = (id) => {
             views.forEach((v) => {
@@ -415,6 +426,33 @@ gen=1       # auto-mine on regtest</code></pre>
                     if (navMorePanel && !navMorePanel.hidden) {
                         navMorePanel.hidden = true;
                     }
+                }
+            });
+        });
+
+        // Modal helpers
+        const openModal = (id) => {
+            const modal = modals.find(m => m.id === id);
+            if (!modal) return;
+            modal.removeAttribute('hidden');
+            gsap.fromTo(modal.querySelector('.modal-card'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.2, ease: "power2.out" });
+        };
+
+        const closeModal = () => {
+            modals.forEach(m => m.setAttribute('hidden', 'true'));
+        };
+
+        modalTriggers.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.modalTarget;
+                if (targetId) openModal(targetId);
+            });
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal') || e.target.classList.contains('modal-close')) {
+                    closeModal();
                 }
             });
         });
@@ -458,6 +496,29 @@ gen=1       # auto-mine on regtest</code></pre>
         // Set indicator to initial view
         setIndicator('hero');
     </script>
+    <div class="modal" id="hashes-modal" hidden>
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Close">✕</button>
+            <h3>Verify checksums</h3>
+            <ol>
+                <li>Download binaries and checksums from releases.</li>
+                <li>Compute hash: <code>shasum -a 256 filename</code></li>
+                <li>Compare against published checksum before running.</li>
+            </ol>
+            <p class="note">Always validate source and signatures when available.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="params-modal" hidden>
+        <div class="modal-card">
+            <button class="modal-close" aria-label="Close">✕</button>
+            <h3>Get Sprout params</h3>
+            <p>Download directly:</p>
+            <p><a href="https://download.dallo.org/downloads/sprout-groth16.params" target="_blank" rel="noopener">download.dallo.org/downloads/sprout-groth16.params</a></p>
+            <p class="note">Place params where your environment expects them (mirrors Zcash layout).</p>
+        </div>
+    </div>
+
     <footer class="site-footer">
         <div class="container">
             <p>© 2025 DALLO Project</p>
